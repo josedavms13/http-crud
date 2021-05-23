@@ -63,7 +63,7 @@ function App() {
     const [newStudentToggle, SetNewStudentToggle] = useState(false)
 
 
-    //Add new student to the Students State Variable if new
+    //Add new student to the Students State Variable if it's new
 
     const [alreadyExistsMessageToggle, SetAlreadyExistsMessageToggle] = useState(false);
 
@@ -73,7 +73,6 @@ function App() {
             const currentStudents = [...listOfStudents]
 
             if (currentStudents.includes(data.Student)) {
-                console.log('This already exists');
                 SetAlreadyExistsMessageToggle(true);
                 SetNewStudentToggle(false);
 
@@ -92,14 +91,16 @@ function App() {
     }
 
 
-    useEffect(() => {
-        console.log(listOfStudents)
-    }, [listOfStudents])
-
     //endregion create new student
 
 
     //endregion STUDENTS
+
+
+
+
+
+
 
     return (
         <div className="App">
