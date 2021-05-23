@@ -1,7 +1,7 @@
 import TaskCard from "./taskCard";
 
 
-const TodoContainer =()=>{
+const TodoContainer =(data)=>{
 
 
 

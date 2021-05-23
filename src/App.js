@@ -95,14 +95,14 @@ function App() {
     //region Read existing tasks
 
 
-
+    const [currentTasks, SetCurrentTaks] = useState(null)
 
 
     useEffect(()=>{
 
         if(dataFromApi){
 
-
+            SetCurrentTaks(dataFromApi);
 
 
         }
@@ -118,9 +118,19 @@ function App() {
 
     const [createTaskToggle, SetCreateTaskToggle] = useState(null)
 
+    const addNewTask = (data)=>{
+        console.log(data);
+        const addNewTaskArray = [...currentTasks];
+        addNewTaskArray.push(data);
+        SetCurrentTaks(addNewTaskArray);
+
+    }
 
     //endregion create new task
 
+    useEffect(()=>{
+        console.log(currentTasks);
+    },[currentTasks])
 
 
 //endregion tasks
@@ -144,10 +154,10 @@ function App() {
             <button onClick={() => SetCreateTaskToggle(true)}>New Task</button>
 
 
-            {createTaskToggle && <CreateTask studentList={listOfStudents} />}
+            {createTaskToggle && <CreateTask studentList={listOfStudents} onsubmit={(data)=>{addNewTask(data)}}/>}
 
 
-            <TodoContainer />
+            <TodoContainer data={currentTasks}/>
         </div>
     );
 }

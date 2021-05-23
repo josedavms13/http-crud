@@ -1,4 +1,3 @@
-import {useEffect} from "react";
 import {useForm} from "react-hook-form";
 
 const CreateTask = ({studentList, onsubmit})=>{
@@ -13,12 +12,12 @@ const CreateTask = ({studentList, onsubmit})=>{
 
             <form onSubmit={handleSubmit(onsubmit)}>
 
-                <select name="student-name-selection" id="student-selection">
+                <select name="student-name-selection" id="student-selection" {...register('Student')}>
 
                     {
                         studentList && studentList.map((element)=>{
                             return(
-                                <option value={element} key={element} {...register('Student')}>{element}</option>
+                                <option value={element} key={element}>{element}</option>
                             )
                         })
                     }

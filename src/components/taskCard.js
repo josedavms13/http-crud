@@ -2,7 +2,7 @@ import './componentsCss/taskCard.css'
 import {useEffect, useRef, useState} from "react";
 import {TweenMax} from "gsap";
 
-const TaskCard = ({onChange, task}) =>{
+const TaskCard = ({task,onChange}) =>{
 
 
     let taskCard = useRef(null);
