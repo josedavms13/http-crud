@@ -132,11 +132,29 @@ function App() {
 const [taskToDelete, SetTaskToDelete] = useState(null);
 
 
+    const deleteTaskFunction = (id)=>{
+
+        const deleteNewTaskArray = [...currentTasks];
+
+        const index = ()=>{
+            for(let i = 0; i<deleteNewTaskArray.length; i++){
+                if(deleteNewTaskArray[i].id === id){
+                    return i
+                }
+            }
+        }
+        deleteNewTaskArray.splice(index(), 1)
+        SetCurrentTask(deleteNewTaskArray);
+
+        deleteTask(id);
+
+    }
+
     useEffect(()=>{
 
         if(taskToDelete){
 
-            deleteTask(taskToDelete);
+            deleteTaskFunction(taskToDelete)
 
         }
 
