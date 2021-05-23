@@ -18,6 +18,7 @@ import filterRepeatedTask from "./utilities/filterRepetedTask";
 import CreateTask from "./components/createTask";
 import NewStudent from "./VIEWS/NewStudent";
 import ThisUserAlreadyExistCard from "./components/thisUserAlreadyExistCard";
+import TodoContainer from "./components/todoContainer";
 
 function App() {
 
@@ -37,13 +38,6 @@ function App() {
 
     //endregion
 
-
-    //region CREATE NEW TASK
-
-    const [createTaskToggle, SetCreateTaskToggle] = useState(null)
-
-
-    //endregion create new task
 
 
     //region  STUDENTS
@@ -96,9 +90,40 @@ function App() {
 
     //endregion STUDENTS
 
+//region TASKS
+
+    //region Read existing tasks
 
 
 
+
+
+    useEffect(()=>{
+
+        if(dataFromApi){
+
+
+
+
+        }
+
+
+    },[dataFromApi])
+    //endregion read existing tasks
+
+
+
+
+    //region CREATE NEW TASK
+
+    const [createTaskToggle, SetCreateTaskToggle] = useState(null)
+
+
+    //endregion create new task
+
+
+
+//endregion tasks
 
 
 
@@ -106,16 +131,23 @@ function App() {
         <div className="App">
 
 
-            <button onClick={() => SetCreateTaskToggle(true)}>New Task</button>
-            {createTaskToggle && <CreateTask studentList={listOfStudents}/>}
-
             <button onClick={() => SetNewStudentToggle(true)}>New Student</button>
-            {newStudentToggle &&
-            <NewStudent onSubmit={(data => addNewStudent(data))} onSaveClick={() => SetNewStudentToggle(false)}
-                        students={listOfStudents}/>}
+
+
+            {newStudentToggle && <NewStudent onSubmit={(data => addNewStudent(data))} onSaveClick={() => SetNewStudentToggle(false)}
+                students={listOfStudents}/>}
+
 
             {alreadyExistsMessageToggle && <ThisUserAlreadyExistCard/>}
 
+
+            <button onClick={() => SetCreateTaskToggle(true)}>New Task</button>
+
+
+            {createTaskToggle && <CreateTask studentList={listOfStudents} />}
+
+
+            <TodoContainer />
         </div>
     );
 }

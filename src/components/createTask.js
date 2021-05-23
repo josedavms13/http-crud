@@ -3,15 +3,6 @@ import {useForm} from "react-hook-form";
 
 const CreateTask = ({studentList, onsubmit})=>{
 
-    useEffect(()=>{
-
-        if(studentList) {
-
-            console.log(studentList)
-
-        }
-
-    },[studentList])
 
 
     const {handleSubmit, register} = useForm();
