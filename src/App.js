@@ -11,12 +11,13 @@ import read from "./services/read";
 //region import UTILITIES
 
 import getListOfStudents from './utilities/getListOfStudents'
-import filterRepetedTask from "./utilities/filterRepetedTask";
+import filterRepeatedTask from "./utilities/filterRepetedTask";
 
 //endregion import utilities
 
 import CreateTask from "./components/createTask";
 import NewStudent from "./VIEWS/NewStudent";
+import ThisUserAlreadyExistCard from "./components/thisUserAlreadyExistCard";
 
 function App() {
 
@@ -28,11 +29,10 @@ function App() {
     useEffect(() => {
 
         read()
-            .then(data => SetDataFromApi(filterRepetedTask(data.todos)));
+            .then(data => SetDataFromApi(filterRepeatedTask(data.todos)));
 
 
     }, [])
-
 
 
     //endregion
@@ -48,40 +48,55 @@ function App() {
 
     //region  STUDENTS
 
-        //region Get Students from api
-        useEffect(() => {
+    //region Get Students from api
+    useEffect(() => {
 
-            if (dataFromApi) {
-                SetListOfStudents(getListOfStudents(dataFromApi));
+        if (dataFromApi) {
+            SetListOfStudents(getListOfStudents(dataFromApi));
+        }
+    }, [dataFromApi])
+    //endregion get students from api
+
+
+    //region Create New Student
+
+    const [newStudentToggle, SetNewStudentToggle] = useState(false)
+
+
+    //Add new student to the Students State Variable if new
+
+    const [alreadyExistsMessageToggle, SetAlreadyExistsMessageToggle] = useState(false);
+
+    function addNewStudent(data) {
+
+        if (data !== null) {
+            const currentStudents = [...listOfStudents]
+
+            if (currentStudents.includes(data.Student)) {
+                console.log('This already exists');
+                SetAlreadyExistsMessageToggle(true);
+                SetNewStudentToggle(false);
+
+                setTimeout(()=>{
+                    SetAlreadyExistsMessageToggle(false);
+                },2000)
+
             }
-        }, [dataFromApi])
-        //endregion get students from api
+            else {
+                currentStudents.push(data.Student);
 
-
-        //region Create New Student
-
-        const [newStudentToggle, SetNewStudentToggle] = useState(false)
-
-
-        //Add new student to the Students State Variable
-        function addNewStudent(data){
-
-            if(data !== null) {
-                const CurrentStudents = [...listOfStudents]
-                CurrentStudents.push(data);
-
-                SetListOfStudents(CurrentStudents);
+                SetListOfStudents(currentStudents);
                 SetNewStudentToggle(false);
             }
         }
+    }
 
 
-        useEffect(()=>{
-            console.log(listOfStudents)
-        },[listOfStudents])
+    useEffect(() => {
+        console.log(listOfStudents)
+    }, [listOfStudents])
 
     //endregion create new student
-
 
 
     //endregion STUDENTS
@@ -90,11 +105,15 @@ function App() {
         <div className="App">
 
 
-            <button onClick={()=> SetCreateTaskToggle(true)}>New Task</button>
+            <button onClick={() => SetCreateTaskToggle(true)}>New Task</button>
             {createTaskToggle && <CreateTask studentList={listOfStudents}/>}
 
-            <button onClick={()=> SetNewStudentToggle(true)}>New Student</button>
-            {newStudentToggle && <NewStudent onSubmit={(data=>addNewStudent(data))} onSaveClick={()=>SetNewStudentToggle(false)} students={listOfStudents}/>}
+            <button onClick={() => SetNewStudentToggle(true)}>New Student</button>
+            {newStudentToggle &&
+            <NewStudent onSubmit={(data => addNewStudent(data))} onSaveClick={() => SetNewStudentToggle(false)}
+                        students={listOfStudents}/>}
+
+            {alreadyExistsMessageToggle && <ThisUserAlreadyExistCard/>}
 
         </div>
     );

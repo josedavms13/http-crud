@@ -1,7 +1,7 @@
 import {useForm} from "react-hook-form";
 
 
-const NewStudent = ({onSubmit})=>{
+const NewStudent = ({onSubmit, students})=>{
 
 
     const {handleSubmit, register} = useForm();
