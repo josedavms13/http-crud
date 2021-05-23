@@ -1,16 +1,32 @@
 import './componentsCss/taskCard.css'
-import {useEffect, useRef, useState} from "react";
-import {TweenMax} from "gsap";
+import {useEffect, useState} from "react";
 
 const TaskCard = ({task,onChange}) =>{
 
 
-    let taskCard = useRef(null);
+    console.log(task);
 
-    const [isCompleted, SetIsCompleted] = useState('pending');
+
+    const [isTaskCompleted, SetIsTaskCompleted] = useState(task.isCompleted)
+    const [isCompletedText, SetIsCompletedText] = useState('pending');
     const [buttonColor, SetButtonColor] = useState(' ')
 
+    useEffect(()=>{
+        if(isTaskCompleted){
+            SetIsCompletedText('Completed');
+        }
+        else{
+            SetIsCompletedText('pending');
+        }
+    },[isTaskCompleted])
+
+
+
+
+    //region HOLD CLICK SECTION
     let timer;
+
+
 
     function clickPressed() {
         console.log('click pressed')
@@ -32,18 +48,20 @@ const TaskCard = ({task,onChange}) =>{
 
     function afterTimeOut(){
         console.log('time Out')
-        SetIsCompleted('Completed')
+        SetIsTaskCompleted(true);
         SetButtonColor('completed')
     }
+
+    //endregion hold click section
 
     return(
         <div className={`task-card ${buttonColor}`}>
 
-            <div onPointerDown={clickPressed} onPointerUp={clickReleased} className="task-container" ref={element => taskCard = element}>
-                <h2>Hacer la cama</h2>
+            <div onPointerDown={clickPressed} onPointerUp={clickReleased} className="task-container">
+                <h2>{task.task}</h2>
 
-                <h5>Jose</h5>
-                <h4>{isCompleted}</h4>
+                <h5>{task.student}</h5>
+                <h4>{isCompletedText}</h4>
             </div>
 
 
