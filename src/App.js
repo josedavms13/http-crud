@@ -129,39 +129,78 @@ function App() {
 
     //region DELETE TASK
 
-const [taskToDelete, SetTaskToDelete] = useState(null);
+    const [itemToDeleteId , SetItemToDeleteId] = useState(null);
 
 
-    const deleteTaskFunction = (id)=>{
+    useEffect(() => {
 
-        const deleteNewTaskArray = [...currentTasks];
 
+            if (itemToDeleteId) {
+                deleteTask(itemToDeleteId)
+                console.log(itemToDeleteId);
+                deleteTaskFunction(itemToDeleteId)
+            }
+        }
+
+        , [itemToDeleteId])
+
+
+
+
+
+
+
+const deleteTaskFunction = (id)=> {
+
+        const arrayWithoutDeleteTaskArray = [...currentTasks];
+
+
+        console.log(id);
         const index = ()=>{
-            for(let i = 0; i<deleteNewTaskArray.length; i++){
-                if(deleteNewTaskArray[i].id === id){
+            for(let i = 0; i<arrayWithoutDeleteTaskArray.length; i++){
+                if(arrayWithoutDeleteTaskArray[i].id === id){
                     return i
                 }
             }
         }
-        deleteNewTaskArray.splice(index(), 1)
-        SetCurrentTask(deleteNewTaskArray);
-
-        deleteTask(id);
-
-    }
-
-    useEffect(()=>{
-
-        if(taskToDelete){
-
-            deleteTaskFunction(taskToDelete)
-
-        }
+        arrayWithoutDeleteTaskArray.splice(index(), 1)
+        SetCurrentTask(arrayWithoutDeleteTaskArray);
 
 
-    },[taskToDelete])
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     //endregion
+
+
+
+    //region UPDATE TASK
+
+
+
+    //endregion update task
 
     useEffect(()=>{
         console.log(currentTasks);
@@ -179,7 +218,7 @@ const [taskToDelete, SetTaskToDelete] = useState(null);
             <button onClick={() => SetNewStudentToggle(true)}>New Student</button>
 
 
-            {newStudentToggle && <NewStudent onSubmit={(data => addNewStudent(data))} onSaveClick={() => SetNewStudentToggle(false)}
+            {newStudentToggle && <NewStudent onCancel={()=>{SetNewStudentToggle(false)}} onSubmit={(data => addNewStudent(data))} onSaveClick={() => SetNewStudentToggle(false)}
                 students={listOfStudents}/>}
 
 
@@ -192,7 +231,7 @@ const [taskToDelete, SetTaskToDelete] = useState(null);
             {createTaskToggle && <CreateTask studentList={listOfStudents} onsubmit={(data)=>{addNewTask(data)}}/>}
 
             {/*Display Tasks*/}
-            <TodoContainer data={currentTasks} onTaskDelete={(id)=>{SetTaskToDelete(id)}}/>
+            <TodoContainer data={currentTasks} onTaskDelete={(id)=>{SetItemToDeleteId(id)}} />
         </div>
     );
 }

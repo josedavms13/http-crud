@@ -1,7 +1,7 @@
 import {useForm} from "react-hook-form";
 
 
-const NewStudent = ({onSubmit})=>{
+const NewStudent = ({onSubmit, onCancel})=>{
 
 
     const {handleSubmit, register} = useForm();
@@ -17,6 +17,7 @@ const NewStudent = ({onSubmit})=>{
                 <input type="text" name={"student-name"} placeholder={'Name...'} {...register('Student')} autoFocus={'autofocus'} required={'required'}/>
 
                 <button>Save</button>
+                <button onClick={onCancel}>Cancel</button>
             </form>
         </div>
 
