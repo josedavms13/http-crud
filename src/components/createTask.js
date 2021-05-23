@@ -12,7 +12,7 @@ const CreateTask = ({studentList, onsubmit})=>{
 
             <form onSubmit={handleSubmit(onsubmit)}>
 
-                <select name="student-name-selection" id="student-selection" {...register('Student')}>
+                <select name="student-name-selection" id="student-selection" {...register('student')}>
 
                     {
                         studentList && studentList.map((element)=>{

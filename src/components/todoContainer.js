@@ -5,7 +5,6 @@ import {useEffect, useState} from "react";
 const TodoContainer = ({data}) => {
 
     const [toWorkWithData, SetToWorkWithData] = useState(null);
-    const [cardToggle, SetCardToggle] = useState(false)
 
     useEffect(() => {
         if (data) {
