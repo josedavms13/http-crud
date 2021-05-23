@@ -1,19 +1,25 @@
 
+// 32:23  // -> axios 47:34
+
+import axios from "axios";
 
 function create (data){
 
 
     const baseUrl = `https://todos-go.herokuapp.com/api/todos`;
 
+    console.log(data);
 
 
-    const promise = fetch(baseUrl,{
+    const promise = axios({
         method : 'POST',
-        body : data,
-        headers : new Headers().set('content-type', 'application/json')
+        url: baseUrl,
+        data : data
     })
 
 
-
+    return promise
 
 }
+
+export default create

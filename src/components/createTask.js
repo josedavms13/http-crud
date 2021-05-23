@@ -24,7 +24,7 @@ const CreateTask = ({studentList, onsubmit})=>{
                 </select>
 
                 <label htmlFor="task-name">Type your pending</label>
-                <input type="text" name={"task-name"} {...register('task',{required:true})}/>
+                <input type="text" name={"task-name"} {...register('task')} required={'required'} autoFocus={'autofocus'}/>
                 <button>Submit</button>
 
 

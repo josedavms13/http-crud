@@ -14,7 +14,7 @@ const NewStudent = ({onSubmit})=>{
         <div className={'new-student-view'}>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <label htmlFor="student-name">Type Name</label>
-                <input type="text" name={"student-name"} placeholder={'Name...'} {...register('Student',{required:true})} autoFocus={'autofocus'}/>
+                <input type="text" name={"student-name"} placeholder={'Name...'} {...register('Student')} autoFocus={'autofocus'} required={'required'}/>
 
                 <button>Save</button>
             </form>

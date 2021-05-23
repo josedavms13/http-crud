@@ -5,6 +5,7 @@ import {useEffect, useState} from "react";
 //region  import SERVICES
 
 import read from "./services/read";
+import create from "./services/create";
 
 //endregion import services
 
@@ -95,14 +96,14 @@ function App() {
     //region Read existing tasks
 
 
-    const [currentTasks, SetCurrentTaks] = useState(null)
+    const [currentTasks, SetCurrentTask] = useState(null)
 
 
     useEffect(()=>{
 
         if(dataFromApi){
 
-            SetCurrentTaks(dataFromApi);
+            SetCurrentTask(dataFromApi);
 
 
         }
@@ -119,10 +120,14 @@ function App() {
     const [createTaskToggle, SetCreateTaskToggle] = useState(null)
 
     const addNewTask = (data)=>{
-        console.log(data);
+
+        create(data);
+        read()
+            .then(data => SetDataFromApi(filterRepeatedTask(data.todos)));
+
         const addNewTaskArray = [...currentTasks];
         addNewTaskArray.push(data);
-        SetCurrentTaks(addNewTaskArray);
+        SetCurrentTask(addNewTaskArray);
         SetCreateTaskToggle(false);
     }
 
