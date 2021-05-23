@@ -1,7 +1,7 @@
 import './componentsCss/taskCard.css'
 import {useEffect, useState} from "react";
 
-const TaskCard = ({task,onChange}) =>{
+const TaskCard = ({task,onChange, onDelete}) =>{
 
 
     console.log(task);
@@ -62,6 +62,9 @@ const TaskCard = ({task,onChange}) =>{
 
                 <h5>{task.student}</h5>
                 <h4>{isCompletedText}</h4>
+            </div>
+            <div className="delete">
+                <button onClick={()=>{onDelete(task.id)}}>Delete</button>
             </div>
 
 

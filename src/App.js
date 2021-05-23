@@ -6,7 +6,7 @@ import {useEffect, useState} from "react";
 
 import read from "./services/read";
 import create from "./services/create";
-
+import deleteTask from "./services/deleteTask";
 //endregion import services
 
 //region import UTILITIES
@@ -31,7 +31,7 @@ function App() {
     useEffect(() => {
 
         read()
-            .then(data => SetDataFromApi(filterRepeatedTask(data.todos)));
+            .then(data => SetDataFromApi(data.todos));
 
 
     }, [])
@@ -48,6 +48,9 @@ function App() {
 
         if (dataFromApi) {
             SetListOfStudents(getListOfStudents(dataFromApi));
+
+            console.log(dataFromApi)
+            SetCurrentTask(dataFromApi);
         }
     }, [dataFromApi])
     //endregion get students from api
@@ -99,17 +102,9 @@ function App() {
     const [currentTasks, SetCurrentTask] = useState(null)
 
 
-    useEffect(()=>{
-
-        if(dataFromApi){
-
-            SetCurrentTask(dataFromApi);
 
 
-        }
 
-
-    },[dataFromApi])
     //endregion read existing tasks
 
 
@@ -123,7 +118,7 @@ function App() {
 
         create(data);
         read()
-            .then(data => SetDataFromApi(filterRepeatedTask(data.todos)));
+            .then(data => SetDataFromApi(data.todos));
 
         const addNewTaskArray = [...currentTasks];
         addNewTaskArray.push(data);
@@ -132,6 +127,26 @@ function App() {
     }
 
     //endregion create new task
+
+
+
+    //region DELETE TASK
+
+const [taskToDelete, SetTaskToDelete] = useState(null);
+
+
+    useEffect(()=>{
+
+        if(taskToDelete){
+
+            console.log(taskToDelete);
+            deleteTask(taskToDelete);
+        }
+
+
+    },[taskToDelete])
+
+    //endregion
 
     useEffect(()=>{
         console.log(currentTasks);
@@ -145,7 +160,7 @@ function App() {
     return (
         <div className="App">
 
-
+            {/*Add New Student*/}
             <button onClick={() => SetNewStudentToggle(true)}>New Student</button>
 
 
@@ -155,14 +170,14 @@ function App() {
 
             {alreadyExistsMessageToggle && <ThisUserAlreadyExistCard/>}
 
-
+            {/*Create New Task*/}
             <button onClick={() => SetCreateTaskToggle(true)}>New Task</button>
 
 
             {createTaskToggle && <CreateTask studentList={listOfStudents} onsubmit={(data)=>{addNewTask(data)}}/>}
 
-
-            <TodoContainer data={currentTasks}/>
+            {/*Display Tasks*/}
+            <TodoContainer data={currentTasks} onTaskDelete={(id)=>{SetTaskToDelete(id)}}/>
         </div>
     );
 }

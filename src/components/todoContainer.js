@@ -2,7 +2,7 @@ import TaskCard from "./taskCard";
 import {useEffect, useState} from "react";
 
 
-const TodoContainer = ({data}) => {
+const TodoContainer = ({data, onTaskDelete}) => {
 
     const [toWorkWithData, SetToWorkWithData] = useState(null);
 
@@ -22,7 +22,7 @@ const TodoContainer = ({data}) => {
             {toWorkWithData&&<div>
                 {data.map((element)=>{
                     return(
-                        <TaskCard task={element} key={element.id}/>
+                        <TaskCard task={element} key={element.id} onDelete={onTaskDelete}/>
                     )
                 })}
             </div>}
