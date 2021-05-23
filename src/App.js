@@ -117,9 +117,6 @@ function App() {
     const addNewTask = (data)=>{
 
         create(data);
-        read()
-            .then(data => SetDataFromApi(data.todos));
-
         const addNewTaskArray = [...currentTasks];
         addNewTaskArray.push(data);
         SetCurrentTask(addNewTaskArray);
@@ -139,8 +136,8 @@ const [taskToDelete, SetTaskToDelete] = useState(null);
 
         if(taskToDelete){
 
-            console.log(taskToDelete);
             deleteTask(taskToDelete);
+
         }
 
 

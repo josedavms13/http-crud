@@ -3,11 +3,11 @@ import axios from "axios";
 
 function deleteTask(id){
 
-    const baseUrl = `https://todos-go.herokuapp.com/api/todos`;
+
 
     const promise = axios({
         method : 'DELETE',
-        url: `${baseUrl}/${id}`
+        url: `https://todos-go.herokuapp.com/api/todos/${id}`
     })
 
     return promise
