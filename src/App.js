@@ -123,7 +123,7 @@ function App() {
         const addNewTaskArray = [...currentTasks];
         addNewTaskArray.push(data);
         SetCurrentTaks(addNewTaskArray);
-
+        SetCreateTaskToggle(false);
     }
 
     //endregion create new task

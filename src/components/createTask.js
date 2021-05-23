@@ -24,9 +24,7 @@ const CreateTask = ({studentList, onsubmit})=>{
                 </select>
 
                 <label htmlFor="task-name">Type your pending</label>
-                <input type="text" name={"task-name"} {...register('task')}/>
-                <label htmlFor="is-completed">Is completed?</label>
-                <input type="checkbox" name={'is-completed'}/>
+                <input type="text" name={"task-name"} {...register('task',{required:true})}/>
                 <button>Submit</button>
 
 

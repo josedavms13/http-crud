@@ -7,7 +7,7 @@ function create (data){
 
 
 
-    fetch(baseUrl,{
+    const promise = fetch(baseUrl,{
         method : 'POST',
         body : data,
         headers : new Headers().set('content-type', 'application/json')
