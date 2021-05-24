@@ -1,0 +1,68 @@
+.new-student-view{
+    position: absolute;
+    z-index: 10;
+    top: 20vh;
+    left: 20vw;
+    background-color: rgba(12, 17, 56, 0.82);
+    backdrop-filter: blur(30px);
+    border-radius: 40px;
+    height: 60vh;
+    width: 60vw;
+    display: flex;
+    flex-direction: column;
+    padding: 3%;
+}
+
+
+.new-student-view .tittle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 15vh;
+    font-size: 2vw;
+}
+
+.new-student-view .inputs-section{
+    height: 30vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.new-student-view h1{
+    color: white;
+}
+
+.new-student-view label{
+    font-size: 2vw;
+    color: white;
+}
+
+.new-student-view input{
+    font-size: 2vw;
+    width: 40%;
+}
+
+.new-student-view .button-section{
+    height: 15vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+
+.new-student-view button{
+    border-radius: 30px;
+    font-size: 1.5vw;
+    padding: 1%;
+    width: 10vw;
+
+    background-color: rgba(255, 255, 255, 0.87);
+    backdrop-filter: blur(30px);
+}
+.new-student-view button:hover{
+
+    background-color: rgb(255, 255, 255);
+}

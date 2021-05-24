@@ -30,10 +30,11 @@
 }
 .App>.header{
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   /*background: rgba(17, 36, 33, 0.75);*/
-  height: 18vw;
+  height: 25vh;
   border-bottom: white solid 1px;
   backdrop-filter: blur(30px);
 
@@ -44,11 +45,49 @@
 .header>h1{
   border-bottom: white solid 5px;
 }
-
+.header>p{
+  font-size: 1vw;
+}
 .App>.app-container{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
+}
+
+.app-container>.buttons-container{
+  margin-top: 1vh;
+  height: 10vh;
+  width: 40%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.buttons-container>button{
+  width: 40%;
+  height: 80%;
+  font-size: 2vw;
+  background-color: rgba(255, 255, 255, 0.53);
+  border-radius: 30px;
+  backdrop-filter: blur(20px);
+}
+
+.buttons-container>button:hover{
+  background-color: rgb(255, 255, 255);
+
+}
+
+
+.new-student-pannel{
+  top: 25vh;
+  z-index: 15;
+  position: absolute;
+  width: 40vw;
+  height: 50vh;
+  background-color: royalblue;
+  display: flex;
+  justify-content: center;
+
 }

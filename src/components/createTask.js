@@ -1,4 +1,5 @@
 import {useForm} from "react-hook-form";
+import './componentsCss/createTask.css'
 
 const CreateTask = ({studentList, onsubmit})=>{
 
@@ -11,20 +12,25 @@ const CreateTask = ({studentList, onsubmit})=>{
         <div className={'create-task'}>
 
             <form onSubmit={handleSubmit(onsubmit)}>
+                <div className="select-section">
 
-                <select name="student-name-selection" id="student-selection" {...register('student')}>
+                    <label htmlFor="student-name-selection">Pick someone from list</label>
+                    <select name="student-name-selection" id="student-selection" {...register('student')}>
 
-                    {
-                        studentList && studentList.map((element)=>{
-                            return(
-                                <option value={element} key={element}>{element}</option>
-                            )
-                        })
-                    }
-                </select>
+                        {
+                            studentList && studentList.map((element)=>{
+                                return(
+                                    <option value={element} key={element}>{element}</option>
+                                )
+                            })
+                        }
+                    </select>
+                </div>
+                <div className="inputs-container">
 
-                <label htmlFor="task-name">Type your pending</label>
-                <input type="text" name={"task-name"} {...register('task')} required={'required'} autoFocus={'autofocus'}/>
+                    <label htmlFor="task-name">Type the pending</label>
+                    <input type="text" name={"task-name"} {...register('task')} required={'required'} autoFocus={'autofocus'}/>
+                </div>
                 <button>Submit</button>
 
 

@@ -1,5 +1,5 @@
 import {useForm} from "react-hook-form";
-
+import './newStudent.css'
 
 const NewStudent = ({onSubmit, onCancel})=>{
 
@@ -12,12 +12,21 @@ const NewStudent = ({onSubmit, onCancel})=>{
     return(
 
         <div className={'new-student-view'}>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <label htmlFor="student-name">Type Name</label>
-                <input type="text" name={"student-name"} placeholder={'Name...'} {...register('Student')} autoFocus={'autofocus'} required={'required'}/>
+            <div className="tittle">
 
-                <button>Save</button>
-                <button onClick={onCancel}>Cancel</button>
+                <h1>Add New Student</h1>
+            </div>
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <div className="inputs-section">
+
+                    <label htmlFor="student-name">Type Name</label>
+                    <input type="text" name={"student-name"} placeholder={'Name...'} {...register('Student')} autoFocus={'autofocus'} required={'required'}/>
+                </div>
+                <div className="button-section">
+
+                    <button>Save</button>
+                    <button onClick={onCancel}>Cancel</button>
+                </div>
             </form>
         </div>
 

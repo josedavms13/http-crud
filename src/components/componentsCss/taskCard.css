@@ -1,6 +1,8 @@
 
 
 .task-card{
+
+    user-select: none;
     color: #ffffff;
 
     border: white solid 1px;
@@ -57,4 +59,18 @@
     border: white solid 2px;
     border-radius: 20px;
     font-size: 1vw;
+}
+.delete>button:hover{
+    background-color: black;
+    border-width: 3px;
+}
+
+.task-card:hover{
+    border-radius: 40px;
+    border-width: 10px;
+}
+
+.clicked{
+    background-color: #111158;
+    color: white;
 }

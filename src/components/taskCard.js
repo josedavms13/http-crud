@@ -32,6 +32,8 @@ const TaskCard = ({task, onDelete, onTaskComplete}) =>{
 
     function clickPressed() {
 
+
+
         timer = setTimeout(()=>{
             afterTimeOut();
         },1000)

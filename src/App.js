@@ -248,21 +248,26 @@ const [taskToUpdate, SetTaskToUpdate] = useState(null);
             <div className="header">
 
                 <h1>Task List</h1>
+                <p>Hold click on a task to mark it as completed</p>
             </div>
             <div className="app-container">
+                <div className="buttons-container">
 
-                {/*Add New Student*/}
-                <button onClick={() => SetNewStudentToggle(true)}>New Student</button>
-
-
-                {newStudentToggle && <NewStudent onCancel={()=>{SetNewStudentToggle(false)}} onSubmit={(data => addNewStudent(data))} onSaveClick={() => SetNewStudentToggle(false)}
-                                                 students={listOfStudents}/>}
+                    {/*Add New Student*/}
+                    <button onClick={() => SetNewStudentToggle(true)}>New Student</button>
 
 
-                {alreadyExistsMessageToggle && <ThisUserAlreadyExistCard/>}
 
-                {/*Create New Task*/}
-                <button onClick={() => SetCreateTaskToggle(true)}>New Task</button>
+
+                    {alreadyExistsMessageToggle && <ThisUserAlreadyExistCard/>}
+
+                    {/*Create New Task*/}
+                    <button onClick={() => SetCreateTaskToggle(true)}>New Task</button>
+                </div>
+
+
+                    {newStudentToggle && <NewStudent onCancel={()=>{SetNewStudentToggle(false)}} onSubmit={(data => addNewStudent(data))} onSaveClick={() => SetNewStudentToggle(false)}
+                                                     students={listOfStudents}/>}
 
 
                 {createTaskToggle && <CreateTask studentList={listOfStudents} onsubmit={(data)=>{addNewTask(data)}}/>}
