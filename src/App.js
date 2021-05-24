@@ -241,25 +241,35 @@ const [taskToUpdate, SetTaskToUpdate] = useState(null);
 
     return (
         <div className="App">
+            
+            <div className="bg-image">
 
-            {/*Add New Student*/}
-            <button onClick={() => SetNewStudentToggle(true)}>New Student</button>
+            </div>
+            <div className="header">
+
+                <h1>Task List</h1>
+            </div>
+            <div className="app-container">
+
+                {/*Add New Student*/}
+                <button onClick={() => SetNewStudentToggle(true)}>New Student</button>
 
 
-            {newStudentToggle && <NewStudent onCancel={()=>{SetNewStudentToggle(false)}} onSubmit={(data => addNewStudent(data))} onSaveClick={() => SetNewStudentToggle(false)}
-                students={listOfStudents}/>}
+                {newStudentToggle && <NewStudent onCancel={()=>{SetNewStudentToggle(false)}} onSubmit={(data => addNewStudent(data))} onSaveClick={() => SetNewStudentToggle(false)}
+                                                 students={listOfStudents}/>}
 
 
-            {alreadyExistsMessageToggle && <ThisUserAlreadyExistCard/>}
+                {alreadyExistsMessageToggle && <ThisUserAlreadyExistCard/>}
 
-            {/*Create New Task*/}
-            <button onClick={() => SetCreateTaskToggle(true)}>New Task</button>
+                {/*Create New Task*/}
+                <button onClick={() => SetCreateTaskToggle(true)}>New Task</button>
 
 
-            {createTaskToggle && <CreateTask studentList={listOfStudents} onsubmit={(data)=>{addNewTask(data)}}/>}
+                {createTaskToggle && <CreateTask studentList={listOfStudents} onsubmit={(data)=>{addNewTask(data)}}/>}
 
-            {/*Display Tasks*/}
-            <TodoContainer data={currentTasks} onTaskDelete={(id)=>{SetItemToDeleteId(id)}} onTaskComplete={(id)=>SetTaskToUpdate(id)}/>
+                {/*Display Tasks*/}
+                <TodoContainer data={currentTasks} onTaskDelete={(id)=>{SetItemToDeleteId(id)}} onTaskComplete={(id)=>SetTaskToUpdate(id)}/>
+            </div>
         </div>
     );
 }

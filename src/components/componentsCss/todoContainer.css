@@ -1,0 +1,12 @@
+
+
+.todo-container{
+    overflow: auto;
+
+    width: 40%;
+    height: 60vh;
+
+    display: flex;
+    flex-direction: column;
+
+}

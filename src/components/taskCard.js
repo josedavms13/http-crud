@@ -1,6 +1,8 @@
 import './componentsCss/taskCard.css'
 import {useEffect, useState} from "react";
 
+
+
 const TaskCard = ({task, onDelete, onTaskComplete}) =>{
 
 
@@ -54,15 +56,22 @@ const TaskCard = ({task, onDelete, onTaskComplete}) =>{
 
     return(
         <div className={`task-card ${buttonColor}`}>
+            <div className="task-container">
 
-            <div onPointerDown={clickPressed} onPointerUp={clickReleased} className="task-container">
-                <h2>{task.task}</h2>
+                <div onPointerDown={clickPressed} onPointerUp={clickReleased} className="task-container">
+                    <div className="task-name">
 
-                <h5>{task.student}</h5>
-                <h4>{isCompletedText}</h4>
-            </div>
-            <div className="delete">
-                <button onClick={()=>{onDelete(task.id)}}>Delete</button>
+                        <h2>{task.task}</h2>
+                    </div>
+                    <div className="details-container">
+
+                        <h5>{task.student}</h5>
+                        <h4>{isCompletedText}</h4>
+                    </div>
+                </div>
+                <div className="delete">
+                    <button onClick={()=>{onDelete(task.id)}}>Delete</button>
+                </div>
             </div>
 
 

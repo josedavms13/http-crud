@@ -1,10 +1,60 @@
 
 
 .task-card{
-    background-color: gray;
+    color: #ffffff;
+
+    border: white solid 1px;
+    border-radius: 50px;
+    margin-top: 2vh;
+    background-color: rgba(82, 82, 82, 0.32);
+    height: 10vh;
+
+    font-size: 1vw;
+
+    backdrop-filter: blur(25px);
 }
 
 
 .completed{
     background-color: lime;
+    color: black;
+}
+
+.task-container{
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+.task-name{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20vw;
+}
+
+.details-container{
+    width: 12vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-left: white solid 1px;
+
+}
+.delete{
+    width: 8vw;
+    /*background: darkblue;*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.delete>button{
+    height: 70%;
+    width: 70%;
+    background-color: rgba(0, 0, 0, 0.79);
+    color: white;
+    border: white solid 2px;
+    border-radius: 20px;
+    font-size: 1vw;
 }

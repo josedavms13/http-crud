@@ -1,3 +1,5 @@
+import './componentsCss/todoContainer.css'
+
 import TaskCard from "./taskCard";
 import {useEffect, useState} from "react";
 
@@ -17,7 +19,7 @@ const TodoContainer = ({data, onTaskDelete, onTaskComplete}) => {
 
     return (
 
-        <div>
+        <div className={'todo-container'}>
 
             {toWorkWithData&&<div>
                 {data.map((element)=>{

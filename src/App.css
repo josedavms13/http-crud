@@ -1,42 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
+
+
 *{
   margin: 0;
-  padding: 5px;
+  padding: 0;
+  font-family: 'Noto Sans JP', sans-serif;
+
 }
 .App {
+  position: absolute;
   text-align: center;
+  box-sizing: border-box;
+  width: 100vw;
+  height: 100vh;
+
+
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.App>.bg-image{
+  box-sizing: border-box;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-image: url("./Media/backgroundimage.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  z-index: -1;
+}
+.App>.header{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #148067;
+  height: 18vw;
+
+  font-size: 3vw;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.App>.app-container{
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  align-items: center;
+  box-sizing: border-box;
 }
