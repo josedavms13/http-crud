@@ -32,12 +32,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #148067;
+  /*background: rgba(17, 36, 33, 0.75);*/
   height: 18vw;
+  border-bottom: white solid 1px;
+  backdrop-filter: blur(30px);
 
+  color : white;
   font-size: 3vw;
 }
 
+.header>h1{
+  border-bottom: white solid 5px;
+}
 
 .App>.app-container{
   display: flex;
