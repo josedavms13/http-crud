@@ -7,12 +7,12 @@ import {useEffect, useState} from "react";
 import read from "./services/read";
 import create from "./services/create";
 import deleteTask from "./services/deleteTask";
+import update from "./services/update";
 //endregion import services
 
 //region import UTILITIES
 
 import getListOfStudents from './utilities/getListOfStudents'
-import filterRepeatedTask from "./utilities/filterRepetedTask";
 
 //endregion import utilities
 
@@ -49,7 +49,6 @@ function App() {
         if (dataFromApi) {
             SetListOfStudents(getListOfStudents(dataFromApi));
 
-            console.log(dataFromApi)
             SetCurrentTask(dataFromApi);
         }
     }, [dataFromApi])
@@ -116,12 +115,17 @@ function App() {
 
     const addNewTask = (data)=>{
 
-        create(data);
+        create(data)
+            .then(()=>{
+                read()
+                    .then(data => SetCurrentTask(data.todos))
+            })
         const addNewTaskArray = [...currentTasks];
         addNewTaskArray.push(data);
         SetCurrentTask(addNewTaskArray);
         SetCreateTaskToggle(false);
     }
+
 
     //endregion create new task
 
@@ -137,7 +141,6 @@ function App() {
 
             if (itemToDeleteId) {
                 deleteTask(itemToDeleteId)
-                console.log(itemToDeleteId);
                 deleteTaskFunction(itemToDeleteId)
             }
         }
@@ -148,14 +151,11 @@ function App() {
 
 
 
-
-
 const deleteTaskFunction = (id)=> {
 
         const arrayWithoutDeleteTaskArray = [...currentTasks];
 
 
-        console.log(id);
         const index = ()=>{
             for(let i = 0; i<arrayWithoutDeleteTaskArray.length; i++){
                 if(arrayWithoutDeleteTaskArray[i].id === id){
@@ -198,13 +198,41 @@ const deleteTaskFunction = (id)=> {
 
     //region UPDATE TASK
 
+const [taskToUpdate, SetTaskToUpdate] = useState(null);
+
+    useEffect(()=>{
+        if(taskToUpdate){
+
+            updateTask(taskToUpdate)
+        }
+    },[taskToUpdate])
+
+
+
+
+    const updateTask = (id)=>{
+
+        const itemToUpdate = ()=>{
+            for(let i = 0; i<currentTasks.length; i++){
+
+                if(currentTasks[i].id === id){
+                    currentTasks[i].isCompleted = true;
+                    return currentTasks[i]
+                }
+
+            }
+        }
+
+        update(id, itemToUpdate())
+
+    }
+
 
 
     //endregion update task
 
-    useEffect(()=>{
-        console.log(currentTasks);
-    },[currentTasks])
+
+
 
 
 //endregion tasks
@@ -231,7 +259,7 @@ const deleteTaskFunction = (id)=> {
             {createTaskToggle && <CreateTask studentList={listOfStudents} onsubmit={(data)=>{addNewTask(data)}}/>}
 
             {/*Display Tasks*/}
-            <TodoContainer data={currentTasks} onTaskDelete={(id)=>{SetItemToDeleteId(id)}} />
+            <TodoContainer data={currentTasks} onTaskDelete={(id)=>{SetItemToDeleteId(id)}} onTaskComplete={(id)=>SetTaskToUpdate(id)}/>
         </div>
     );
 }

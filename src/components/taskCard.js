@@ -1,10 +1,8 @@
 import './componentsCss/taskCard.css'
 import {useEffect, useState} from "react";
 
-const TaskCard = ({task,onChange, onDelete}) =>{
+const TaskCard = ({task, onDelete, onTaskComplete}) =>{
 
-
-    console.log(task);
 
 
     const [isTaskCompleted, SetIsTaskCompleted] = useState(task.isCompleted)
@@ -14,8 +12,10 @@ const TaskCard = ({task,onChange, onDelete}) =>{
     useEffect(()=>{
         if(isTaskCompleted){
             SetIsCompletedText('Completed');
+            SetButtonColor('completed')
         }
         else{
+
             SetIsCompletedText('pending');
         }
     },[isTaskCompleted])
@@ -29,7 +29,6 @@ const TaskCard = ({task,onChange, onDelete}) =>{
 
 
     function clickPressed() {
-        console.log('click pressed')
 
         timer = setTimeout(()=>{
             afterTimeOut();
@@ -37,7 +36,6 @@ const TaskCard = ({task,onChange, onDelete}) =>{
     }
 
     function clickReleased() {
-        console.log('click Released')
         cancelTimer();
 
     }
@@ -47,8 +45,8 @@ const TaskCard = ({task,onChange, onDelete}) =>{
     }
 
     function afterTimeOut(){
-        console.log('time Out')
         SetIsTaskCompleted(true);
+        onTaskComplete(task.id);
         SetButtonColor('completed')
     }
 
