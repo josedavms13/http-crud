@@ -70,9 +70,17 @@ function App() {
     function addNewStudent(data) {
 
         if (data !== null) {
-            const currentStudents = [...listOfStudents]
+            let currentStudents = [];
+            currentStudents = listOfStudents.filter((element)=> currentStudents.push(element.name))
 
-            if (currentStudents.includes(data.Student)) {
+            const studentNameList = [];
+
+            currentStudents.forEach((element)=>{
+                studentNameList.push(element.name);
+            })
+
+
+            if (studentNameList.includes(data.Student)) {
                 SetAlreadyExistsMessageToggle(true);
                 SetNewStudentToggle(false);
 
@@ -94,6 +102,7 @@ function App() {
             }
         }
     }
+
 
 
     //endregion create new student
@@ -227,7 +236,7 @@ function App() {
                     <button onClick={() => SetNewStudentToggle(true)}>New Student</button>
 
 
-                    {alreadyExistsMessageToggle && <ThisUserAlreadyExistCard/>}
+                    {alreadyExistsMessageToggle&&<ThisUserAlreadyExistCard/>}
 
                     {/*Create New Task*/}
                     <button onClick={() => SetCreateTaskToggle(true)}>New Task</button>

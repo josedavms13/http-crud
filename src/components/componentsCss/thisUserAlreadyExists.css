@@ -1,0 +1,31 @@
+
+.this-user-already-exists{
+    box-sizing: border-box;
+    padding: 3%;
+    position: absolute;
+    z-index: 10;
+    background-color: rgba(121, 9, 9, 0.73);
+    backdrop-filter: blur(20px);
+
+    border-radius: 20px;
+    color: white;
+    width: 50vw;
+    left: 25vw;
+    height: 50vh;
+    top: 25vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.this-user-already-exists>h4{
+    margin-bottom: 5%;
+    font-size: 3vw;
+    border-bottom: white solid 2px;
+}
+
+.this-user-already-exists>h5{
+    font-weight: lighter;
+}
