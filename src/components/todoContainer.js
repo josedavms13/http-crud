@@ -10,8 +10,7 @@ const TodoContainer = ({data, onTaskDelete, onTaskComplete}) => {
 
     useEffect(() => {
         if (data) {
-
-            SetToWorkWithData(data)
+                SetToWorkWithData(data)
         }
     }, [data])
 

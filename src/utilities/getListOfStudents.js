@@ -1,17 +1,26 @@
 function getListOfStudents(objectArray) {
 
+
     const arrayOfStudents = [];
 
-    let temp = '';
+    let temp= '';
+    let temporalObject = {};
+    for(let i = 0; i< objectArray.length; i++){
 
-    objectArray.forEach((element) => {
+        if(objectArray[i].student !== temp){
 
-        const item = element.student;
-        if (temp !== item) {
-            arrayOfStudents.push(item);
-            temp = item;
+            temporalObject ={
+                id : i,
+                name : objectArray[i].student,
+            }
+
+            arrayOfStudents.push(temporalObject);
         }
-    })
+
+
+
+    }
+
 
     return arrayOfStudents
 

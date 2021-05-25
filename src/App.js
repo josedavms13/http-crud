@@ -52,7 +52,7 @@ function App() {
         if (dataFromApi) {
             SetListOfStudents(getListOfStudents(dataFromApi));
 
-            SetCurrentTask(dataFromApi);
+            SetTaskList(dataFromApi);
         }
     }, [dataFromApi])
     //endregion get students from api
@@ -82,8 +82,13 @@ function App() {
 
             }
             else {
-                currentStudents.push(data.Student);
 
+                let lastIndex = (listOfStudents[listOfStudents.length-1]).id;
+                const newStudent = {
+                    id : lastIndex+ 1,
+                    name: data.Student
+                }
+                currentStudents.push(newStudent);
                 SetListOfStudents(currentStudents);
                 SetNewStudentToggle(false);
             }
@@ -99,15 +104,17 @@ function App() {
 //region TASKS
 
     const [taskList, SetTaskList] = useState(null)
-
+    const [taskListToDisplay, SetTaskListToDisplay] = useState(null)
 
     useEffect(()=>{
-        console.log(taskList);
-    })
+        if(taskList) {
+            SetTaskListToDisplay(taskList);
+        }
+
+    },[taskList])
     //region Read existing tasks
 
 
-    const [currentTasks, SetCurrentTask] = useState(null)
 
 
 
@@ -125,14 +132,17 @@ function App() {
     const addNewTask = (data)=>{
 
         create(data)
-            .then(()=>{
-                read()
-                    .then(data => SetCurrentTask(data.todos))
-            })
-        const addNewTaskArray = [...currentTasks];
-        addNewTaskArray.push(data);
-        SetTaskList(addNewTaskArray);
-        SetCreateTaskToggle(false);
+            .then((res)=>{
+
+                const addNewTaskArray = [...taskList];
+
+                addNewTaskArray.push(res.data);
+                SetTaskList(addNewTaskArray);
+                SetCreateTaskToggle(false);
+            }
+
+)
+
     }
 
 
@@ -158,6 +168,8 @@ function App() {
             }
         }
         tempList.splice(index(), 1)
+
+
         SetTaskList(tempList);
 
 
@@ -179,7 +191,6 @@ function App() {
     const updateTask = (id)=>{
 
         const tempArray = [...taskList];
-        console.log(id);
         const itemToUpdate = tempArray.filter((element)=> element.id === id)[0];
 
         itemToUpdate.isCompleted = true;
@@ -234,7 +245,7 @@ function App() {
                 }}/>}
 
                 {/*Display Tasks*/}
-                {taskList && <TodoContainer data={taskList} onTaskDelete={(id) => {
+                {taskListToDisplay && <TodoContainer data={taskListToDisplay} onTaskDelete={(id) => {
                     deleteFunction(id)
                 }} onTaskComplete={(id) => updateTask(id)}/>
                 }            </div>

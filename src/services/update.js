@@ -2,7 +2,6 @@ import axios from "axios";
 
 function update(id, item){
 
-    console.log(item );
 
     const baseUrl = `https://todos-go.herokuapp.com/api/todos/${id}`;
 
@@ -11,7 +10,6 @@ function update(id, item){
         url: baseUrl,
         data : item
     })
-        .then(data=>console.log(data))
 
 
     return promise;

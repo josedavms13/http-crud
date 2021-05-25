@@ -20,7 +20,7 @@ const CreateTask = ({studentList, onsubmit})=>{
                         {
                             studentList && studentList.map((element)=>{
                                 return(
-                                    <option value={element} key={element}>{element}</option>
+                                    <option value={element.name} key={element.id}>{element.name}</option>
                                 )
                             })
                         }
